@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -46,6 +47,7 @@ class Photo(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=CASCADE)
     location = models.ForeignKey(Location,  on_delete=CASCADE)
+    photo = CloudinaryField('photo')
 
     @classmethod
     def filter_by_location(cls, location):
