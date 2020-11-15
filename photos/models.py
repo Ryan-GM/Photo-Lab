@@ -21,4 +21,13 @@ class Photos(models.Mode):
         photo_location = Photos.objects.filter(location__name = location).all()
         return photo_location
 
+    @classmethod
+    def update_photo(cls,id,value):
+        cls.objects.filter(id = id).update(photo = value)
+
+    @classmethod
+    def search_by_type(cls, type):
+        photo = cls.objects.filter(type__name__icontains=type)
+        return photo
+
     
