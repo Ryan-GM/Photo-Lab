@@ -45,7 +45,7 @@ class Photo(models.Model):
     author = models.CharField(max_length=40, default='admin')
     date = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=CASCADE)
-    location = models.ForeignKey(Location)
+    location = models.ForeignKey(Location,  on_delete=CASCADE)
 
     @classmethod
     def filter_by_location(cls, location):
@@ -54,12 +54,12 @@ class Photo(models.Model):
 
     @classmethod
     def update_photo(cls, id, value):
-        cls.objects.filter(id=id).update(image=value)
+        cls.objects.filter(id=id).update(photo=value)
 
     @classmethod
     def get_photo_by_id(cls, id):
-        image = cls.objects.filter(id=id).all()
-        return image
+        photo = cls.objects.filter(id=id).all()
+        return photo
 
     @classmethod
     def search_by_category(cls, category):
