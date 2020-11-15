@@ -11,4 +11,7 @@ class Photos(models.Mode):
     type = models.ForeignKey(Type)
     location = models.ForeignKey(Location)
 
-    
+    @classmethod
+    def get_photo_by_id(cls,id):
+        photo = cls.objects.filter(id = id).all()
+        return photo
