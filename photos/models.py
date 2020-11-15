@@ -15,3 +15,10 @@ class Photos(models.Mode):
     def get_photo_by_id(cls,id):
         photo = cls.objects.filter(id = id).all()
         return photo
+
+    @classmethod 
+    def filter_by_location(cls,location):
+        photo_location = Photos.objects.filter(location__name = location).all()
+        return photo_location
+
+    
