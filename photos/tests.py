@@ -30,9 +30,9 @@ class TestPhoto(TestCase):
         self.assertTrue(len(changed_photo) > 0)
 
     def test_get_photo_by_id(self):
-        found_photo = self.photo_test.get_photo_by_id(self.photo_test.id)
+        found_photos = self.photo_test.get_photo_by_id(self.photo_test.id)
         photo = Photo.objects.filter(id=self.photo_test.id)
-        self.assertTrue(found_photo, photo)
+        self.assertTrue(found_photos, photo)
 
     def test_search_photo_by_location(self):
         self.photo_test.save_photo()
