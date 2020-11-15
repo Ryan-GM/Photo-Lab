@@ -4,7 +4,7 @@ from .models import Photo,Location,Category
 
 class TestPhoto(TestCase):
     def setUp(self):
-        self.location = Location(name="Strath")
+        self.location = Location(name='Strath')
         self.location.save_location()
         self.category = Category(name='Bike')
         self.category.save_category()
@@ -48,3 +48,21 @@ class TestPhoto(TestCase):
         Photo.objects.all().delete()
         Location.objects.all().delete()
         Category.objects.all().delete()
+
+class CategoryTestClass(TestCase):
+    def setUp(self):
+        self.category = Category(name='Bike')
+        self.category.save_category()
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.category, Category))
+
+    def test_save_category(self):
+        self.category.save_category()
+        categories = Category.objects.all()
+        self.assertTrue(len(categories) > 0)
+
+    def test_delete_category(self):
+        self.category.delete_category()
+        category = Category.objects.all()
+        self.assertTrue(len(category) == 0)
