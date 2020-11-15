@@ -14,7 +14,7 @@ class TestPhoto(TestCase):
         self.assertTrue(isinstance(self.photo_test, Photo))
 
     def test_save_photo(self):
-        self.image_test.save_photo()
+        self.photo_test.save_photo()
         after = Photo.objects.all()
         self.assertTrue(len(after) > 0)
 
@@ -26,16 +26,16 @@ class TestPhoto(TestCase):
     def test_update_photo(self):
         self.photo_test.save_photo()
         self.photo_test.update_photo(self.photo_test.id, 'photos/test.jpg')
-        changed_img = Photo.objects.filter(photo='photos/test.jpg')
-        self.assertTrue(len(changed_img) > 0)
+        changed_photo = Photo.objects.filter(photo='photos/test.jpg')
+        self.assertTrue(len(changed_photo) > 0)
 
     def test_get_photo_by_id(self):
         found_photo = self.photo_test.get_photo_by_id(self.photo_test.id)
-        photo = Photo.objects.filter(id=self.image_test.id)
+        photo = Photo.objects.filter(id=self.photo_test.id)
         self.assertTrue(found_photo, photo)
 
     def test_search_photo_by_location(self):
-        self.image_test.save_image()
+        self.photo_test.save_photo()
         found_photo = self.photo_test.filter_by_location(location='Strath')
         self.assertTrue(len(found_photo) == 1)
 
