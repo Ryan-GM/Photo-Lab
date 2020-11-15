@@ -21,7 +21,8 @@ from decouple import config,Csv
 
 MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+# DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 # development
 if config('MODE')=="dev":
    DATABASES = {
@@ -59,7 +60,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@(vey_u+k3(vbyni%p%mfhv+kt_13sj1+^x8=(8_+%d2q_a1!^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -176,12 +177,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Configure Django App for Heroku.
-django_heroku.settings(locals())
-
 # Cloudinary configurations
 cloudinary.config( 
   cloud_name = "rayo", 
   api_key = "932744348394112", 
   api_secret = "NAu5gTJ9NhN_bAnpwwEPVg6XjXc" 
 )
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
