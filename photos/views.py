@@ -11,3 +11,14 @@ def index(request):
     locations = Location.get_locations()
     print(locations)
     return render(request, 'photos/index.html', {'photos':photos[::-1],'locations': locations})
+
+def search_results(request):
+    if 'photosearch' in request.GET and request.GET["photosearch"]:
+        category = request.GET.get("photosearch")
+        searched_photos = Photo.search_by_category(category)
+        message = f"{category}"
+        print(searched_photos)
+        return render(request, 'photos/search.html',{"message":message,"photos":searched_photos})
+    else:
+        message = "You haven't searched for any photo category"
+        return render(request, 'photos/search.html', {"message": message})
